@@ -49,7 +49,11 @@
   --hover-bg: #252525;
   --link-color: #8b9eff;
   --link-hover: #a5b4ff;
-
+  --bg-gray-50: #1a1a1a;
+  --border-gray-200: #2a2a2a;
+  --text-gray-500: #e5e5e5;
+  --text-gray-400: #a0a0a0;
+  
   color-scheme: dark;
   color: var(--text-primary);
   background-color: var(--background);
