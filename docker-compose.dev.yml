@@ -1,0 +1,12 @@
+# Development override for live CSS/frontend editing
+# Use with: docker compose -f compose.yaml -f docker-compose.dev.yml up
+
+services:
+  api:
+    volumes:
+      - ./data:/app/data
+      # Mount console built files for hot-reload
+      - ./console/dist:/app/console/dist:ro
+      # Mount notification center built files
+      - ./notification_center/dist:/app/notification_center/dist:ro
+
