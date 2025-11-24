@@ -13,7 +13,8 @@ RUN npm ci
 # Copy frontend source code
 COPY console/ ./
 
-# Build frontend in production mode
+# Build frontend in production mode with increased memory
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm run build
 
 # Stage 2: Build the notification center frontend
@@ -31,7 +32,8 @@ RUN npm ci
 # Copy notification center source code
 COPY notification_center/ ./
 
-# Build notification center in production mode
+# Build notification center in production mode with increased memory
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm run build
 
 # Stage 3: Build the Go binary
