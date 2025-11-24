@@ -2,8 +2,7 @@
 /* These rules override the Ant Design reset that sets "color: inherit" on buttons */
 .tiptap-toolbar button,
 .tiptap-toolbar .ant-btn {
-    color: #ffffff !important;
-    /* White text for toolbar buttons */
+    color: var(--text-primary) !important;
 }
 
 /* Ensure FontAwesome icons inherit the button color */
@@ -14,7 +13,7 @@
 
 /* ColorPicker trigger button inside toolbar */
 .tiptap-toolbar .ant-color-picker-trigger {
-    color: #ffffff !important;
+    color: var(--text-primary) !important;
 }
 
 /* Popover content buttons (for link and emoji popovers) */
@@ -27,8 +26,7 @@
 /* Input elements inside TiptapToolbar popovers */
 .tiptap-link-popover input,
 .tiptap-link-popover select {
-    color: #000000 !important;
-    /* Dark text for form inputs */
+    color: var(--text-primary) !important;
 }
 
 /* Paragraph spacing to match MJML compiled output */
@@ -90,12 +88,12 @@
 }
 
 .email-text-preview a {
-    color: #0066cc;
+    color: var(--link-color);
     text-decoration: underline;
 }
 
 .email-text-preview a:hover {
-    color: #004499;
+    color: var(--link-hover);
 }
 
 .email-text-preview br {

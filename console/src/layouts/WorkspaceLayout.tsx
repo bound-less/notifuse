@@ -5,7 +5,9 @@ import {
   faImage,
   faFolderOpen,
   faObjectGroup,
-  faPaperPlane
+  faPaperPlane,
+  faMoon,
+  faSun
 } from '@fortawesome/free-regular-svg-icons'
 import {
   faGear,
@@ -18,6 +20,7 @@ import {
   faChartLine
 } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/AuthContext'
+import { useTheme } from '../contexts/ThemeContext'
 import { Workspace, UserPermissions } from '../services/api/types'
 import { ContactsCsvUploadProvider } from '../components/contacts/ContactsCsvUploadProvider'
 import { useState, useEffect } from 'react'
@@ -31,6 +34,7 @@ const { Content, Sider } = Layout
 export function WorkspaceLayout() {
   const { workspaceId } = useParams({ from: '/workspace/$workspaceId' })
   const { signout, workspaces, user, refreshWorkspaces } = useAuth()
+  const { theme, toggleTheme } = useTheme()
   const navigate = useNavigate()
   const [collapsed, setCollapsed] = useState(false)
   const [userPermissions, setUserPermissions] = useState<UserPermissions | null>(null)
@@ -261,19 +265,18 @@ export function WorkspaceLayout() {
         <Layout>
           <Sider
             width={250}
-            theme="light"
             style={{
               position: 'fixed',
               height: '100vh',
               left: 0,
               top: 0,
               overflow: 'auto',
-              zIndex: 10
+              zIndex: 10,
+              borderRight: '1px solid var(--border-color)'
             }}
             collapsible
             collapsed={collapsed}
             trigger={null}
-            className="border-r border-gray-200"
           >
             <div className="flex items-center gap-2 p-6">
               {!collapsed && (
@@ -321,6 +324,12 @@ export function WorkspaceLayout() {
               )}
               <Button
                 type="text"
+                icon={<FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} size="sm" />}
+                onClick={toggleTheme}
+                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              />
+              <Button
+                type="text"
                 icon={
                   collapsed ? (
                     <svg
@@ -364,9 +373,8 @@ export function WorkspaceLayout() {
             <Menu
               mode="inline"
               selectedKeys={[selectedKey]}
-              style={{ height: 'calc(100% - 120px)', borderRight: 0, backgroundColor: '#fdfdfd' }}
+              style={{ height: 'calc(100% - 120px)', borderRight: 0 }}
               items={loadingPermissions ? [] : menuItems}
-              theme="light"
             />
             <div
               style={{
@@ -375,9 +383,10 @@ export function WorkspaceLayout() {
                 left: 0,
                 width: collapsed ? '80px' : '224px',
                 padding: '16px',
-                borderTop: '1px solid #f0f0f0',
+                borderTop: '1px solid var(--border-color)',
                 zIndex: 1,
-                transition: 'width 0.2s'
+                transition: 'width 0.2s',
+                backgroundColor: 'var(--surface-bg)'
               }}
             >
               {!collapsed && (
@@ -405,7 +414,7 @@ export function WorkspaceLayout() {
                     placement="bottomRight"
                   >
                     <Button type="text" block>
-                      <div style={{ padding: '4px 8px', color: '#595959', cursor: 'pointer' }}>
+                      <div style={{ padding: '4px 8px', color: 'var(--text-secondary)', cursor: 'pointer' }}>
                         {user?.email}
                       </div>
                     </Button>
@@ -415,7 +424,7 @@ export function WorkspaceLayout() {
                       textAlign: 'center',
                       marginTop: '8px',
                       fontSize: '9px',
-                      color: '#000',
+                      color: 'var(--text-secondary)',
                       opacity: 0.7
                     }}
                   >

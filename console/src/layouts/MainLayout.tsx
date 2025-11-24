@@ -19,12 +19,23 @@ export function MainLayout({ children }: MainLayoutProps) {
       }}
     >
       <Content style={{ padding: '24px' }}>{children}</Content>
-      <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-2 py-1 rounded-sm text-[9px]">
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '1rem',
+          left: '1rem',
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+          backdropFilter: 'blur(12px)',
+          padding: '0.25rem 0.5rem',
+          borderRadius: '0.125rem',
+          fontSize: '9px'
+        }}
+      >
         <a
           href="https://unsplash.com/fr/@zetong"
           target="_blank"
           rel="noopener noreferrer"
-          className="!text-gray-400 no-underline"
+          style={{ color: '#a0a0a0', textDecoration: 'none' }}
         >
           Photo by Zetong Li
         </a>
@@ -41,7 +52,20 @@ interface MainLayoutSidebarProps {
 
 export function MainLayoutSidebar({ children, title, extra }: MainLayoutSidebarProps) {
   return (
-    <div className="fixed right-0 top-0 bottom-0 w-[400px] p-6 backdrop-blur-lg bg-white/90 border-l border-black/[0.06] overflow-y-auto">
+    <div
+      style={{
+        position: 'fixed',
+        right: 0,
+        top: 0,
+        bottom: 0,
+        width: '400px',
+        padding: '1.5rem',
+        backdropFilter: 'blur(24px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        borderLeft: '1px solid rgba(0, 0, 0, 0.06)',
+        overflowY: 'auto'
+      }}
+    >
       <div
         style={{
           display: 'flex',
